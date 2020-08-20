@@ -18,8 +18,8 @@
 界面截图
 
 ![pic](./readme_images/image-20200819103544563.png)
+![pic](./readme_images/Snipaste_2020-08-20_09-38-33.png)
+![pic](./readme_images/Snipaste_2020-08-20_09-40-32.png)
 
-`ps: http://123.57.177.119:9998/images 链接使用Nginx映射了/home/images图片保存图片文件夹`
-
-![pic](./readme_images/Snipaste_2020-08-19_10-58-45.png)
-![pic](./readme_images/Snipaste_2020-08-19_10-39-35.png)
+`PS: http://123.57.177.119:9998/images 链接使用Nginx映射了/home/images图片保存图片文件夹`
+ 
