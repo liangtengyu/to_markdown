@@ -1,7 +1,8 @@
 <template>
   <div>
-  <a-form-model :model="webinfo"  :rules="rules" :label-col="labelCol" :wrapper-col="wrapperCol">
 
+    <a-spin :spinning="spinning">
+  <a-form-model :model="webinfo"  :rules="rules" :label-col="labelCol" :wrapper-col="wrapperCol">
 
 
     <a-collapse  v-model="activeKey" >
@@ -50,7 +51,7 @@
       </a-button>
     </a-form-model-item>
   </a-form-model>
-
+    </a-spin>
 
       <mavon-editor     v-model="data.markdown"  style="min-height: 500px" />
 
@@ -68,7 +69,8 @@
   },
   data(){
     return{
-      data:'无',
+      data:'',
+      spinning: false,
       activeKey: [1, 2],
       labelCol: { span: 4 },
       wrapperCol: { span: 14 },
@@ -88,11 +90,18 @@
     }
   },methods: {
     onSubmit() {
-      console.log('submit!', this.webinfo);
-      this.$axios.post('http://localhost:9999/resolve/mark', this.webinfo).then(r =>{
+      this.spinning = true;
+      this.$axios.post('/resolve/mark', this.webinfo).then(r =>{
         this.data = r.data
+        this.spinning = false;
+
+      }).catch(reason => {
+        console.log(reason);
+        console.log('报错啦');
+        this.spinning = false;
       });
     },
+
   },
 }
 </script>

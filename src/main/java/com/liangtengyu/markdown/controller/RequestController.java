@@ -5,6 +5,7 @@ import com.liangtengyu.markdown.config.HandleFactory;
 import com.liangtengyu.markdown.entity.MarkDown;
 import com.liangtengyu.markdown.service.HandleService;
 import com.liangtengyu.markdown.service.Impl.MarkDownService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,6 +31,7 @@ public class RequestController {
     @PostMapping("/mark")
     @ResponseBody
     @CrossOrigin
+
     public Map<String, String> mark(@RequestBody MarkDown markDown){
         Map<String,String> resultMap = new HashMap<>();
         String result = null;

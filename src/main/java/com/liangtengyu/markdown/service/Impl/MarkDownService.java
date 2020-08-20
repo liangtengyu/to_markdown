@@ -58,8 +58,8 @@ public abstract class MarkDownService implements HandleService {
             // 处理图片
             handleImg(markDown,document);
 
-            // 处理代码块
-            handlePre(document);
+//            // 处理代码块
+//            handlePre(document);
         }
 
         return document.html();
@@ -70,15 +70,7 @@ public abstract class MarkDownService implements HandleService {
      * @param document
      */
     protected void handlePre(Document document){
-        // 获取代码块
-        Elements elements = document.getElementsByTag("pre");
 
-        if(MarkDownUtil.elementsNotEmpty(elements)){
-            for(Element element : elements){
-                element.prepend("<br/><p>```</p><br/>");
-                element.append("<br/><p>```</p><br/>");
-            }
-        }
     }
 
     /**
