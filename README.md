@@ -1,9 +1,11 @@
 
 #### ToMarkDown
-将HTTP页面 解析为 MarkDown
+
+>将HTTP页面 解析为 MarkDown
 
 
 演示地址:   http://123.57.177.119:9999/
+
 
 
 后端技术栈:
@@ -21,5 +23,28 @@
 ![pic](./readme_images/Snipaste_2020-08-20_09-38-33.png)
 ![pic](./readme_images/Snipaste_2020-08-20_09-40-32.png)
 
-`PS: http://123.57.177.119:9998/images 链接使用Nginx映射了/home/images图片保存图片文件夹`
+
+`http://123.57.177.119:9998/images `
+
+`使用Nginx映射了/home/images图片保存图片文件夹`
+ ![pic](./readme_images/Snipaste_2020-08-20_09-42-39.png)
  
+ >Nginx的配置文件为:
+ 
+ ```
+server
+{
+    listen 9998;
+    server_name 124.70.218.193;
+    
+    location /images {
+            alias /home/images;
+            proxy_temp_path     /home/images;  
+            expires -1; 
+        }
+
+    access_log logs/imageProxyLog.log;
+
+}
+
+```
