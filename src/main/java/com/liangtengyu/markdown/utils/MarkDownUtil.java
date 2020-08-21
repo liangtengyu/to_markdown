@@ -1,5 +1,7 @@
 package com.liangtengyu.markdown.utils;
 
+import com.liangtengyu.markdown.entity.MarkDown;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.select.Elements;
 
 import java.io.File;
@@ -10,6 +12,7 @@ import java.util.UUID;
  * 工具类
  *
  */
+@Slf4j
 public class MarkDownUtil {
 
     /**
@@ -38,4 +41,20 @@ public class MarkDownUtil {
        return imageFile;
     }
 
+
+    public static String getUrlOrigin(MarkDown markDown) {
+        String net = "";
+        String url = markDown.getBlogUrl();
+        String[] httpsSplit = url.split("://");
+        int i = httpsSplit[1].length() - httpsSplit[1].replaceAll("\\.", "").length();
+        if (i >= 2) {
+            String[] split = httpsSplit[1].split("\\.");
+            net = split[1];
+        } else {
+            String[] split = httpsSplit[1].split("\\.");
+            net = split[0];
+        }
+        log.info("请求链接>>> {} 来源解析为:{}",url,net);
+        return net;
+    }
 }

@@ -1,10 +1,13 @@
 package com.liangtengyu.markdown.entity;
 
+import lombok.Data;
+
 /**
  * 实体类
  *
  * 只有一个实体对象，不需要区分VO、DTO 那么复杂，一个 POJO 就可以搞定
  */
+@Data
 public class MarkDown {
 
     private String website;

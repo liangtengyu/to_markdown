@@ -1,6 +1,5 @@
 package com.liangtengyu.markdown.service.Impl;
 
-import com.liangtengyu.markdown.config.HandleFactory;
 import com.liangtengyu.markdown.entity.MarkDown;
 import com.liangtengyu.markdown.service.HandleService;
 import com.liangtengyu.markdown.utils.MarkDownUtil;
@@ -18,8 +17,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 
