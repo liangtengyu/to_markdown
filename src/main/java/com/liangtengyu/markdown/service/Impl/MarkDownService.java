@@ -100,7 +100,6 @@ public abstract class MarkDownService implements HandleService {
         for(Element element : elements){
             String url = element.attr("src");
             if (url.startsWith("data:image/svg+xml;utf8")) {
-                log.info("跳过 this images");
                 continue;
             }
             try {
