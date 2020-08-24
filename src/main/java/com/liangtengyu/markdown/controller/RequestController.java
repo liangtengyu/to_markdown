@@ -4,6 +4,7 @@ package com.liangtengyu.markdown.controller;
 import com.liangtengyu.markdown.entity.MarkDown;
 import com.liangtengyu.markdown.service.Impl.CSDNHandleService;
 import com.liangtengyu.markdown.service.Impl.WeiXinHandleService;
+import com.liangtengyu.markdown.service.Impl.ZhihuHandleService;
 import com.liangtengyu.markdown.service.ResolveService;
 import com.liangtengyu.markdown.utils.MarkDownUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +43,9 @@ public class RequestController {
                   resolveService = new ResolveService(new WeiXinHandleService());
             } else if ("csdn".equals(website)) {
                 resolveService = new ResolveService(new CSDNHandleService());
+
+            } else if ("zhihu".equals(website)) {
+                resolveService = new ResolveService(new ZhihuHandleService());
 
             } else {
                 log.info("暂时还没有解决方案.");

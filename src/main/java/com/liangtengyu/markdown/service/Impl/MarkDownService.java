@@ -4,6 +4,7 @@ import com.liangtengyu.markdown.entity.MarkDown;
 import com.liangtengyu.markdown.service.HandleService;
 import com.liangtengyu.markdown.utils.MarkDownUtil;
 import com.overzealous.remark.Remark;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,7 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.UUID;
 
-
+@Slf4j
 @Service
 public abstract class MarkDownService implements HandleService {
 
@@ -97,6 +98,11 @@ public abstract class MarkDownService implements HandleService {
         String imageUrl,imageSrc = "";
 
         for(Element element : elements){
+            String url = element.attr("src");
+            if (url.startsWith("data:image/svg+xml;utf8")) {
+                log.info("跳过 this images");
+                continue;
+            }
             try {
                 String name = UUID.randomUUID().toString().split("-")[0];
 
@@ -113,8 +119,6 @@ public abstract class MarkDownService implements HandleService {
                 System.out.println(imageSrc + "下载图片失败,cause by :" + e.getMessage());
 
                 e.printStackTrace();
-            }finally {
-
             }
         }
     }
@@ -135,6 +139,12 @@ public abstract class MarkDownService implements HandleService {
         File imageFile = MarkDownUtil.getImageFile(markDown.getImagePath(),fileName);
 
         String imageSrc = element.attr("src");
+        if (imageSrc.startsWith("data:image/svg+xml;utf8")) {
+            System.out.println("跳过images");
+            return "";
+        }
+
+
 
         // 如果不存在 src，则尝试获取 data-src
         if(imageSrc == null || "".equals(imageSrc.trim())){
