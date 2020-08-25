@@ -150,11 +150,18 @@ public abstract class MarkDownService implements HandleService {
             imageSrc = element.attr("data-src");
         }
 
+        // 如果不存在 data-src，则尝试获取 data-original-src
+        if(imageSrc == null || "".equals(imageSrc.trim())){
+            imageSrc = element.attr("data-original-src");
+            imageSrc = "https:" + imageSrc;//简书 Https
+        }
+
         // 有些图片没有 http
         if(imageSrc.startsWith("//")){
             imageSrc = "http:" + imageSrc;
-        }
 
+        }
+        log.info("图片地址:{}",imageSrc);
         URL url = new URL(imageSrc);
 
         // 打开网络

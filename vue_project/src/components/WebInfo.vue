@@ -10,22 +10,6 @@
     <a-form-model-item label="文章地址"  prop="blogUrl">
       <a-input v-model="webinfo.blogUrl" placeholder="请输入文章地址"/>
     </a-form-model-item>
-        <a-form-model-item label="来源站点">
-          <a-select v-model="webinfo.website" placeholder="选择文章来源网站">
-            <a-select-option value="csdn">
-              CSDN
-            </a-select-option>
-            <a-select-option value="vx">
-              微信公众号
-            </a-select-option>
-            <a-select-option value="cnblogs">
-              博客园cnblogs
-            </a-select-option>
-            <a-select-option value="" disabled>
-              其它渠道陆续开发中...
-            </a-select-option>
-          </a-select>
-        </a-form-model-item>
 
       </a-collapse-panel>
       <a-collapse-panel key="2" header="图片保存信息"  >
@@ -75,7 +59,6 @@
       labelCol: { span: 4 },
       wrapperCol: { span: 14 },
       webinfo:{
-        website:undefined,
         blogUrl:undefined,
         imagePath:undefined,
         imageUrl:undefined,
