@@ -1,7 +1,9 @@
 
-#### ToMarkDown
+#### ToMarkdown
 
->将HTTP页面 解析为 MarkDown
+>描述: 将HTTP页面 解析为 Markdown 
+>
+>目前支持: 知乎,简书,知否(SegmentFault),掘金,CSDN博客,微信公众号文章 一键转Markdown
 
 
 演示地址:   http://123.57.177.119:9999/
@@ -28,9 +30,9 @@
 
 `使用Nginx映射了/home/images图片保存图片文件夹`
  ![pic](./readme_images/Snipaste_2020-08-20_09-42-39.png)
- 
- >Nginx的配置文件为:
- 
+
+ >Nginx的配置文件:
+
  ```
 server
 {
@@ -47,4 +49,4 @@ server
 
 }
 
-```
+ ```
