@@ -28,6 +28,12 @@ import java.util.Map;
 public class RequestController {
 
 
+    private static final String WEIXIN = "weixin";
+    private static final String CSDN = "csdn";
+    private static final String ZHIHU = "zhihu";
+    private static final String JUEJIN = "juejin";
+    private static final String SEGMENTFAULT = "segmentfault";
+    private static final String JIANSHU = "jianshu";
 
     /**
      * 获取文章
@@ -59,21 +65,22 @@ public class RequestController {
     private ResolveService getResolveService(MarkDown markDown) {
         ResolveService resolveService;
         String website = MarkDownUtil.getUrlOrigin(markDown);
-        if ("wx".equals(website)) {
+        if (WEIXIN.equals(website)) {
               resolveService = new ResolveService(new WeiXinHandleService());
-        } else if ("csdn".equals(website)) {
+        } else if (CSDN.equals(website)) {
             resolveService = new ResolveService(new CSDNHandleService());
 
-        } else if ("zhihu".equals(website)) {
+        } else if (ZHIHU.equals(website)) {
             resolveService = new ResolveService(new ZhihuHandleService());
 
-        } else if ("juejin".equals(website)) {
+        } else if (JUEJIN.equals(website)) {
             resolveService = new ResolveService(new JuejinHandleService());
 
-        }  else if ("segmentfault".equals(website)) {
+        }  else if (SEGMENTFAULT.equals(website)) {
             resolveService = new ResolveService(new SegmentFaultHandleService());
 
-        }  else if ("jianshu".equals(website)) {
+
+        }  else if (JIANSHU.equals(website)) {
             resolveService = new ResolveService(new JianshuHandleService());
 
         } else {
