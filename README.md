@@ -3,7 +3,7 @@
 
 >描述: 将HTTP页面 解析为 Markdown 
 >
->目前支持: 知乎,简书,知否(SegmentFault),掘金,CSDN博客,微信公众号文章 一键转Markdown
+>目前支持: 知乎,简书,知否(SegmentFault),掘金,CSDN博客,微信公众号,V2EX 等文章 一键转Markdown
 
 
 演示地址:   http://123.57.177.119:9999/
