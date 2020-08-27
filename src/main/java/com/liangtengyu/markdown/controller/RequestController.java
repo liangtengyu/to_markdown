@@ -6,6 +6,7 @@ import com.liangtengyu.markdown.service.Impl.CSDNHandleService;
 import com.liangtengyu.markdown.service.Impl.JianshuHandleService;
 import com.liangtengyu.markdown.service.Impl.JuejinHandleService;
 import com.liangtengyu.markdown.service.Impl.SegmentFaultHandleService;
+import com.liangtengyu.markdown.service.Impl.V2exHandleService;
 import com.liangtengyu.markdown.service.Impl.WeiXinHandleService;
 import com.liangtengyu.markdown.service.Impl.ZhihuHandleService;
 import com.liangtengyu.markdown.service.ResolveService;
@@ -34,6 +35,7 @@ public class RequestController {
     private static final String JUEJIN = "juejin";
     private static final String SEGMENTFAULT = "segmentfault";
     private static final String JIANSHU = "jianshu";
+    private static final String V_2_EX = "v2ex";
 
     /**
      * 获取文章
@@ -82,6 +84,9 @@ public class RequestController {
 
         }  else if (JIANSHU.equals(website)) {
             resolveService = new ResolveService(new JianshuHandleService());
+
+        }else if (V_2_EX.equals(website)) {
+            resolveService = new ResolveService(new V2exHandleService());
 
         } else {
             log.info("暂时还没有解决方案.");
