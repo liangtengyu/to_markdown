@@ -15,13 +15,17 @@
       <a-collapse-panel key="2" header="图片保存信息"  >
 
         <a-form-model-item label="图片名称"   >
-          <a-input v-model="webinfo.imageName"  placeholder="请输入图片名称"/>
+          <a-input v-model="webinfo.imageName" required  placeholder="请输入图片名称"/>
         </a-form-model-item>
+
+      </a-collapse-panel>
+
+      <a-collapse-panel key ="3" header="自定义配置">
         <a-form-model-item label="存图片到:"  prop="blogUrl">
-          <a-input v-model="webinfo.imagePath" placeholder="请输入存图片到哪里--[服务器存图片的目录]"/>
+          <a-input v-model="webinfo.imagePath" placeholder="请输入存图片到哪里--[服务器存图片的目录]-可不填"/>
         </a-form-model-item>
         <a-form-model-item label="文中图片链接:"  prop="blogUrl">
-          <a-input v-model="webinfo.imageUrl" placeholder="请输入解析后文章中图片的链接--[外网,本地服务器的ip或域名]"/>
+          <a-input v-model="webinfo.imageUrl" placeholder="请输入解析后文章中图片的链接--[外网,本地服务器的ip或域名]-可不填"/>
         </a-form-model-item>
       </a-collapse-panel>
     </a-collapse>
@@ -59,30 +63,35 @@
       labelCol: { span: 4 },
       wrapperCol: { span: 14 },
       webinfo:{
-        blogUrl:undefined,
-        imagePath:undefined,
-        imageUrl:undefined,
-        imageName:undefined
+        blogUrl:"",
+        imagePath:"/home/images",
+        imageUrl:"http://markdown.liangtengyu.com:9998/images",
+        imageName:"ThirdPartyImage"
       },
       rules: {
         blogUrl: [
-          { required: true, message: 'Please input blogUrl ', trigger: 'blur' },
+          { required: true, message: 'Please input ArticleLink ', trigger: 'blur' },
           { min: 10,  message: 'Length should be > 10', trigger: 'blur' },
         ]
       },
     }
   },methods: {
     onSubmit() {
-      this.spinning = true;
-      this.$axios.post('/resolve/mark', this.webinfo).then(r =>{
-        this.data = r.data
-        this.spinning = false;
+      if (this.webinfo.blogUrl.length>10) {
+        this.spinning = true;
+        this.$axios.post('/resolve/mark', this.webinfo).then(r => {
+          this.data = r.data
+          this.spinning = false;
 
-      }).catch(reason => {
-        console.log(reason);
-        console.log('报错啦');
-        this.spinning = false;
-      });
+        }).catch(reason => {
+          console.log(reason);
+          alert('报错啦,打开console查看报错信息');
+          this.spinning = false;
+        });
+      } else {
+        alert("需要输入文章地址")
+      }
+
     },
 
   },
