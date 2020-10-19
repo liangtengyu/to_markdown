@@ -22,8 +22,8 @@
 ---
 界面截图
 
-![pic](./readme_images/image-20200819103544563.png)
-![pic](./readme_images/Snipaste_2020-08-20_09-38-33.png)
-![pic](./readme_images/Snipaste_2020-08-20_09-40-32.png)
+![pic](./readme_images/Snipaste_2020-10-19_15-16-27.png)
+![pic](./readme_images/Snipaste_2020-10-19_15-16-40.png)
+![pic](./readme_images/Snipaste_2020-10-19_15-16-52.png)
 
  
