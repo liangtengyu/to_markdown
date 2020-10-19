@@ -5,10 +5,17 @@ import router from './router'
 import axios from 'axios'
 Vue.prototype.$axios = axios
 
-
-import Antd from 'ant-design-vue';
+import { Button, message,Layout,Input,Menu,Icon,Collapse,FormModel,Spin} from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
-Vue.use(Antd);
+Vue.use(Button);
+Vue.use(Layout);
+Vue.use(Input);
+Vue.use(Menu);
+Vue.use(Collapse);
+Vue.use(Icon);
+Vue.use(FormModel);
+Vue.use(Spin);
+Vue.prototype.$message = message;
 
 
 Vue.config.productionTip = false
