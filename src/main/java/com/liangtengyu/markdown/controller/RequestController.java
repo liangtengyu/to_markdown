@@ -3,6 +3,7 @@ package com.liangtengyu.markdown.controller;
 
 import com.liangtengyu.markdown.entity.MarkDown;
 import com.liangtengyu.markdown.service.Impl.CSDNHandleService;
+import com.liangtengyu.markdown.service.Impl.CsdnBlogHandleService;
 import com.liangtengyu.markdown.service.Impl.JianshuHandleService;
 import com.liangtengyu.markdown.service.Impl.JuejinHandleService;
 import com.liangtengyu.markdown.service.Impl.SegmentFaultHandleService;
@@ -31,6 +32,7 @@ public class RequestController {
 
     private static final String WEIXIN = "weixin";
     private static final String CSDN = "csdn";
+    private static final String CSDN_BLOG = "cnblogs";
     private static final String ZHIHU = "zhihu";
     private static final String JUEJIN = "juejin";
     private static final String SEGMENTFAULT = "segmentfault";
@@ -71,6 +73,9 @@ public class RequestController {
               resolveService = new ResolveService(new WeiXinHandleService());
         } else if (CSDN.equals(website)) {
             resolveService = new ResolveService(new CSDNHandleService());
+
+        } else if (CSDN_BLOG.equals(website)) {
+            resolveService = new ResolveService(new CsdnBlogHandleService());
 
         } else if (ZHIHU.equals(website)) {
             resolveService = new ResolveService(new ZhihuHandleService());

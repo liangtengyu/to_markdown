@@ -57,4 +57,12 @@ public class MarkDownUtil {
         log.info("请求链接>>> {} 来源解析为:{}",url,net);
         return net;
     }
+
+    public static void main(String[] args) {
+        String a = "https://www.cnblogs.com/duanxz/p/4901437.html";
+        MarkDown markDown = new MarkDown();
+        markDown.setBlogUrl(a);
+        String urlOrigin = getUrlOrigin(markDown);
+        System.out.println(urlOrigin);
+    }
 }
