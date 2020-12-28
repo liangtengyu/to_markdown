@@ -1,0 +1,23 @@
+server:
+  port: 9090
+
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    cache: true
+    encoding: UTF-8
+
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
+
+
+
+## markdown存储位置配置区:
+markdown:
+  filePath: ../mds/

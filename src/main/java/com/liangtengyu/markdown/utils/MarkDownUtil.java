@@ -57,6 +57,10 @@ public class MarkDownUtil {
         log.info("请求链接>>> {} 来源解析为:{}",url,net);
         return net;
     }
+    public static String generatorFileName() {
+        String filename = UUID.randomUUID().toString().split("-")[0]+".md";
+        return filename;
+    }
 
     public static void main(String[] args) {
         String a = "https://www.cnblogs.com/duanxz/p/4901437.html";

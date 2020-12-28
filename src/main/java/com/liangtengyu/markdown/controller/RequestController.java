@@ -11,8 +11,10 @@ import com.liangtengyu.markdown.service.Impl.V2exHandleService;
 import com.liangtengyu.markdown.service.Impl.WeiXinHandleService;
 import com.liangtengyu.markdown.service.Impl.ZhihuHandleService;
 import com.liangtengyu.markdown.service.ResolveService;
+import com.liangtengyu.markdown.service.SaveFileService;
 import com.liangtengyu.markdown.utils.MarkDownUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,6 +41,11 @@ public class RequestController {
     private static final String JIANSHU = "jianshu";
     private static final String V_2_EX = "v2ex";
 
+
+    @Autowired
+    SaveFileService saveFileService;
+
+
     /**
      * 获取文章
      * @param markDown
@@ -56,6 +63,7 @@ public class RequestController {
             result = resolveService.get(markDown);
             resultMap.put("code","0");
             resultMap.put("markdown",result);
+            saveFileService.save(result);
             log.info("解析完成 返回markdown结果 "+request.getSession().getId());
         } catch (Exception e) {
             e.printStackTrace();
