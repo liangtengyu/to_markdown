@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: 9999
 
 spring:
   thymeleaf:
@@ -20,4 +20,4 @@ spring:
 
 ## markdown存储位置配置区:
 markdown:
-  filePath: ../mds/
+  filePath: ./mds/
