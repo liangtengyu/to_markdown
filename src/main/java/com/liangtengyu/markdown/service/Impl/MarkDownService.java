@@ -94,7 +94,6 @@ public abstract class MarkDownService implements HandleService {
     }
 
     private void doHandleImg(Elements elements, MarkDown markDown){
-        // 下载图片
         String imageUrl,imageSrc = "";
 
         for(Element element : elements){
@@ -109,7 +108,7 @@ public abstract class MarkDownService implements HandleService {
                 String fileName = downImage(markDown,element,name);
 
 
-                imageUrl = markDown.getImageUrl() + File.separator + fileName;
+                imageUrl = markDown.getImageUrl() + "/" + fileName;
                 // 替换地址
                 element.attr("src",imageUrl);
                 element.attr("alt",fileName);
@@ -139,7 +138,7 @@ public abstract class MarkDownService implements HandleService {
 
         String imageSrc = element.attr("src");
         if (imageSrc.startsWith("data:image/svg+xml;utf8")) {
-            System.out.println("跳过images");
+            log.info("ignore svg type images");
             return "";
         }
 
@@ -161,7 +160,7 @@ public abstract class MarkDownService implements HandleService {
             imageSrc = "http:" + imageSrc;
 
         }
-        log.info("图片地址:{}",imageSrc);
+        log.info("catch picture :{}",imageSrc);
         URL url = new URL(imageSrc);
 
         // 打开网络
