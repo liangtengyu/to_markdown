@@ -1,12 +1,17 @@
 
 
-<img src="./readme_images/favicon.ico" alt="aa" />
+ 
+<h1 align="center"><a href="./readme_images/favicon.ico" target="_blank">ToMarkdown</a></h1>
 
-
-<div style="text-align: center; font-size: 25px;color:blue">  ToMarkdown</div>
+ 
 
 >⚡️功能描述: 将HTTP页面 解析为Markdown格式
 >目前支持: 知乎,简书,知否(SegmentFault),掘金,CSDN博客,微信公众号,V2EX 
+
+
+
+[>>> 快速开始](./readme_images/start.md)
+
 ---
 
 
@@ -18,9 +23,9 @@
 
 > 公众号  &  微信
 
-<div>
-<img src="./readme_images/img.png" style=" margin-left: 130px auto;height :130px;"/>
-<img src="./readme_images/my.png" style="margin-left: 290px auto;height :110px;"/>
+<div >
+<img src="./readme_images/img.png" style=" margin-left: 130px  ;height :130px;"/>
+<img src="./readme_images/my.png" style="margin-left: 290px  ;height :110px;"/>
 </div>
 
 ---

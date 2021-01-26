@@ -22,6 +22,6 @@
 3. 访问 http://127.0.0.1:9999
 
 
-[Download](windows/tomarkdown.rar)
+[Download](../windows/tomarkdown.rar)
 
 ---
