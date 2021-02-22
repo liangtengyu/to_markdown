@@ -45,7 +45,7 @@ public class RequestController {
             result = ResolveService.get(markDown);
             resultMap.put("code","0");
             resultMap.put("markdown",result);
-            log.info(saveFileService.save(result));
+            log.info(saveFileService.saveToFile(result));
             log.info("解析完成 返回markdown结果 "+request.getSession().getId());
             log.info("-------------------------------------------------------------");
         } catch (Exception e) {

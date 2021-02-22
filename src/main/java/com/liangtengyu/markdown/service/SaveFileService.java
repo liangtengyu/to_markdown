@@ -8,5 +8,7 @@ import java.io.IOException;
  * @Date: 2020/12/28 14:39
  */
 public interface SaveFileService {
-    String save(String result) throws IOException;
+    String saveToFile(String result) throws IOException;
+    void saveToDatabase(String result) throws IOException;
+    void saveImagePath(String path);
 }

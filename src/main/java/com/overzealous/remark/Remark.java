@@ -32,7 +32,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * The class that manages converting HTML to Markdown.
  *
- * <p>It is recommended that you save this class if it is going to be reused for better performance.  This class
+ * <p>It is recommended that you saveToFile this class if it is going to be reused for better performance.  This class
  * is thread-safe, but can only process a single document concurrently.</p>
  *
  * <p><strong>Usage:</strong></p>
