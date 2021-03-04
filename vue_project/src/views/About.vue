@@ -1,9 +1,22 @@
 <template>
   <div class="about">
-    <h1>这个工程目的主要是用于构建自己的博客站点(http://liangtengyu.com) </h1>
-    <p>由于本站仅支持 markdown 每次转载文章时都要手动将 HTML 转换为 markdown，非常麻烦 so.</p>
-    <p>就写了该工具，输入博客网址，即可转换相应的markdown</p>
+    <h1>关于本工具</h1>
+    <p>输入博客网址，即可转换相应的markdown</p>
 
-    <a href="http://liangtengyu.com" target="_blank">点击浏览博客</a>
+    <p>----------------------</p>
+
+
+    <h2>关于我</h2>
+    欢迎浏览我的博客>>
+    <a href="http://liangtengyu.com" target="_blank">  点击访问</a>
+    <br>
+    欢迎浏览我的Github>>
+    <a href="https://github.com/liangtengyu" target="_blank">  点击访问</a>
+    <br>
+    <p>----------------------</p>
+    <h1>扫码关注我</h1>
+    <img src="../assets/1614755729311.jpg" height="280" width="800" alt="">
+
+
   </div>
 </template>

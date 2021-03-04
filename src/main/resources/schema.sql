@@ -17,3 +17,9 @@ create table IF NOT EXISTS setting(
                    config_value varchar(100),
                    create_time datetime
 );
+create table IF NOT EXISTS USER_TEMPLATE(
+                   id int primary key auto_increment,
+                   header longtext,
+                   bottom longtext,
+                   create_time datetime
+);

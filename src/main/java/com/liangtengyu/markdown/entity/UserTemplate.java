@@ -9,12 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
-@Table(name = "SETTING")
 @Data
-public class SETTING implements Serializable {
+@Table(name = "USER_TEMPLATE")
+public class UserTemplate implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,16 +22,10 @@ public class SETTING implements Serializable {
     @Column(name = "ID", nullable = false)
     private Integer ID;
 
-    @Column(name = "CONFIG_NAME")
-    private String configName;
+    @Column(name = "HEADER")
+    private String HEADER;
 
-    @Column(name = "CONFIG_VALUE")
-    private String configValue;
-
-    @Column(name = "CREATE_TIME")
-    private Date createTime;
-
-    @Column(name = "REMARK")
-    private String REMARK;
+    @Column(name = "BOTTOM")
+    private String BOTTOM;
 
 }

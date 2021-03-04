@@ -4,6 +4,7 @@ package com.liangtengyu.markdown.controller;
 import com.liangtengyu.markdown.entity.MarkDown;
 import com.liangtengyu.markdown.service.ResolveService;
 import com.liangtengyu.markdown.service.SaveFileService;
+import com.liangtengyu.markdown.service.SettingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,8 @@ public class RequestController {
     @Autowired
     SaveFileService saveFileService;
 
+    @Autowired
+    SettingService settingService;
 
     /**
      * 获取文章
@@ -38,6 +41,7 @@ public class RequestController {
     @ResponseBody
     @CrossOrigin
     public Map<String, String> mark(@RequestBody MarkDown markDown, HttpServletRequest request){
+        fillUp(markDown);
         Map<String,String> resultMap = new HashMap<>();
         String result = null;
         try {
@@ -57,7 +61,12 @@ public class RequestController {
         return resultMap;
     }
 
-
+    private void fillUp(MarkDown markDown) {
+        Map<String, String> settings = settingService.getSettings();
+        markDown.setImagePath(settings.get("Image_Save_Path"));
+        markDown.setImageName(settings.get("Image_DEFAULT_NAME"));
+        markDown.setImageUrl(settings.get("Image_Proxy_Path"));
+    }
 
 
 }
