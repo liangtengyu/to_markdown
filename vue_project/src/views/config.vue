@@ -29,7 +29,7 @@
                 保存配置
               </a-button>
 
-
+              <p style="color: red" class="lb" >{{msg}}</p>
             </a-form-model-item>
           </a-collapse-panel>
         </a-collapse>
@@ -49,6 +49,7 @@
     },
     data(){
       return{
+        msg:'',
         data:'',
         spinning: false,
         activeKey: [1],
@@ -68,7 +69,7 @@
       }
     },methods: {
       onSubmit() {
-
+        this.msg = '更改配置后请重启服务器,否则不生效!';
           this.spinning = true;
           this.$axios.post('http://localhost:9999/setting/set', this.configInfo).then(r => {
             this.data = r.data
