@@ -64,10 +64,13 @@
 ![pic](./readme_images/Snipaste_2020-10-19_15-16-52.png)
 
 
+--- 
 
 
 > [公众号](/vue_project/src/assets/1614755729311.jpg)   
-
+<div >
+<img src="/vue_project/src/assets/1614755729311.jpg" style=" margin-left: 130px  ;height :130px;"/>
+</div>
 
 
 
