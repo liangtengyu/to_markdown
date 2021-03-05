@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="about" style=" height: 850px;">
     <h1>关于本工具</h1>
     <p>输入博客网址，即可转换相应的markdown</p>
 

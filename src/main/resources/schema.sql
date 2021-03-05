@@ -15,7 +15,8 @@ create table IF NOT EXISTS setting(
                    id int primary key auto_increment,
                    config_name varchar(100),
                    config_value varchar(100),
-                   create_time datetime
+                   create_time datetime,
+                   remark varchar(200)
 );
 create table IF NOT EXISTS USER_TEMPLATE(
                    id int primary key auto_increment,

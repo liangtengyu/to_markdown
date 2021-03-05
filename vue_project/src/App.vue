@@ -4,7 +4,7 @@
         <div class="logo" >
           <span style="color:#1890ff;font-size: 22px; font-weight: bold">| ToMarkDown |</span>
         </div>
-        <a-menu theme="dark"  style="height: 1080px" mode="inline" :default-selected-keys="['1']">
+        <a-menu theme="dark"  style="height: auto" mode="inline" :default-selected-keys="['1']">
           <a-menu-item key="Home"   @click="toNav">
             <a-icon type="clock-circle" />
             <span>解析</span>
@@ -16,6 +16,10 @@
           <a-menu-item key="upload"   @click="toNav">
             <a-icon type="upload" />
             <span>上传</span>
+          </a-menu-item>
+          <a-menu-item key="manage"    @click="toNav">
+            <a-icon type="bulb" />
+            <span>管理</span>
           </a-menu-item>
           <a-menu-item key="about"    @click="toNav">
             <a-icon type="bulb" />

@@ -57,7 +57,7 @@
     onSubmit() {
       if (this.configInfo.blogUrl.length>10) {
         this.spinning = true;
-        this.$axios.post('http://localhost:9999/resolve/mark', this.configInfo).then(r => {
+        this.$axios.post('/resolve/mark', this.configInfo).then(r => {
           this.data = r.data
           this.spinning = false;
 
@@ -78,7 +78,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-   .div{
-    height: 1080px;
-   }
+  .mde{
+    height: 850px;
+  }
 </style>

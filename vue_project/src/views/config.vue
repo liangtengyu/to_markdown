@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style=" height: 850px;">
 
     <a-spin :spinning="spinning">
       <a-form-model :model="configInfo" :rules="rules" :label-col="labelCol" :wrapper-col="wrapperCol">
@@ -71,7 +71,7 @@
       onSubmit() {
         this.msg = '更改配置后请重启服务器,否则不生效!';
           this.spinning = true;
-          this.$axios.post('http://localhost:9999/setting/set', this.configInfo).then(r => {
+          this.$axios.post('/setting/set', this.configInfo).then(r => {
             this.data = r.data
             this.spinning = false;
             console.log(this.data)
@@ -87,7 +87,7 @@
     },mounted() {
 
         this.spinning = true;
-        this.$axios.post('http://localhost:9999/setting/get').then(r => {
+        this.$axios.post('/setting/get').then(r => {
           this.data = r.data
           this.configInfo=this.data
           this.spinning = false;
