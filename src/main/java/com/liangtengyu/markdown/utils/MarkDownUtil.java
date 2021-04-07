@@ -55,6 +55,7 @@ public class MarkDownUtil {
             net = split[0];
         }
         log.info("请求链接>>> {} 来源解析为:{}",url,net);
+        markDown.setWebsite(net);
         return net;
     }
     public static String generatorFileName() {

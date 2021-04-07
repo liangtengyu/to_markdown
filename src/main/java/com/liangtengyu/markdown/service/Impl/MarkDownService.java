@@ -1,7 +1,9 @@
 package com.liangtengyu.markdown.service.Impl;
 
+import cn.hutool.http.HttpUtil;
 import com.liangtengyu.markdown.entity.MarkDown;
 import com.liangtengyu.markdown.service.HandleService;
+import com.liangtengyu.markdown.utils.ImageUtil;
 import com.liangtengyu.markdown.utils.MarkDownUtil;
 import com.overzealous.remark.Remark;
 import lombok.extern.slf4j.Slf4j;
@@ -9,15 +11,19 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.UUID;
 
 @Slf4j
@@ -55,9 +61,6 @@ public abstract class MarkDownService implements HandleService {
 
             // 处理图片
             handleImg(markDown,document);
-
-//            // 处理代码块
-//            handlePre(document);
         }
 
         return document.html();
@@ -93,7 +96,8 @@ public abstract class MarkDownService implements HandleService {
         }
     }
 
-    private void doHandleImg(Elements elements, MarkDown markDown){
+
+    public void doHandleImg(Elements elements, MarkDown markDown){
         String imageUrl,imageSrc = "";
 
         for(Element element : elements){
@@ -103,7 +107,6 @@ public abstract class MarkDownService implements HandleService {
             }
             try {
                 String name = UUID.randomUUID().toString().split("-")[0];
-
                 // 下载图片
                 String fileName = downImage(markDown,element,name);
 
@@ -115,7 +118,6 @@ public abstract class MarkDownService implements HandleService {
 
             } catch (IOException e) {
                 System.out.println(imageSrc + "下载图片失败,cause by :" + e.getMessage());
-
                 e.printStackTrace();
             }
         }
@@ -131,17 +133,42 @@ public abstract class MarkDownService implements HandleService {
      * @return
      * @throws IOException
      */
-    private String downImage(MarkDown markDown, Element element, String name) throws IOException {
+
+    public String downImage(MarkDown markDown, Element element, String name) throws IOException {
         String fileName = markDown.getImageName() + "_" + name + ".png";
-
         File imageFile = MarkDownUtil.getImageFile(markDown.getImagePath(),fileName);
-
         String imageSrc = element.attr("src");
+
+
+        imageSrc = handleLinkStyle(markDown,element, imageSrc);
+        if (imageSrc == null) return "";
+
+
+        doDownloadImages(imageFile, imageSrc);
+        return fileName;
+    }
+
+
+    public void doDownloadImages(File imageFile, String imageSrc) {
+        //下载图片⬇️
+        log.info("catch picture :{}", imageSrc);
+        byte[] bytes = HttpUtil.downloadBytes(imageSrc);
+        ImageUtil.byte2image(bytes, imageFile.getPath());
+    }
+
+    /**
+     * 处理成统一的链接样式 如http://xxx.com/123/1.png
+     *
+     * @param markDown
+     * @param element
+     * @param imageSrc
+     * @return
+     */
+    private String handleLinkStyle(MarkDown markDown, Element element, String imageSrc) {
         if (imageSrc.startsWith("data:image/svg+xml;utf8")) {
             log.info("ignore svg type images");
-            return "";
+            return null;
         }
-
 
 
         // 如果不存在 src，则尝试获取 data-src
@@ -155,44 +182,17 @@ public abstract class MarkDownService implements HandleService {
             imageSrc = "https:" + imageSrc;//简书 Https
         }
 
+        if(imageSrc.startsWith("/")){
+            imageSrc = markDown.getWebsite()+".com" + imageSrc;
+        }
+
         // 有些图片没有 http
         if(imageSrc.startsWith("//")){
-            imageSrc = "http:" + imageSrc;
+            imageSrc = "https:" + imageSrc;
 
         }
-        log.info("catch picture :{}",imageSrc);
-        URL url = new URL(imageSrc);
 
-        // 打开网络
-        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-
-        InputStream is = null;
-        OutputStream out = null;
-        try {
-            //获取链接的输出流
-            is = connection.getInputStream();
-
-            //根据输入流写入文件
-            out = new FileOutputStream(imageFile);
-            int i;
-            while((i = is.read()) != -1){
-                out.write(i);
-            }
-
-            return imageFile.getName();
-        } finally {
-            try {
-                if(out != null){
-                    out.close();
-                }
-
-                if(is != null){
-                    is.close();
-                }
-            } catch (IOException e) {
-
-            }
-        }
+        return imageSrc;
     }
 
     /**
