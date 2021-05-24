@@ -29,6 +29,10 @@ public class MD implements Serializable {
     @Column(name = "CONTEXT")
     private String CONTEXT;
 
+
+    @Column(name = "PNAME")
+    private String PNAME;
+
     @Column(name = "CREATE_TIME")
     private Date createTime;
 

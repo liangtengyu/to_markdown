@@ -1,8 +1,11 @@
 package com.liangtengyu.markdown.service.Impl;
 
 import cn.hutool.http.HttpUtil;
+import com.liangtengyu.markdown.config.AppBean;
 import com.liangtengyu.markdown.config.ThreadPoolConfig;
+import com.liangtengyu.markdown.dao.PICDao;
 import com.liangtengyu.markdown.entity.MarkDown;
+import com.liangtengyu.markdown.entity.PIC;
 import com.liangtengyu.markdown.service.HandleService;
 import com.liangtengyu.markdown.utils.ImageUtil;
 import com.liangtengyu.markdown.utils.MarkDownUtil;
@@ -12,11 +15,13 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
 
+import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -26,7 +31,6 @@ import java.util.concurrent.atomic.AtomicReference;
 @Slf4j
 @Service
 public abstract class MarkDownService implements HandleService {
-
 
     @Override
     public String getBlogContent(MarkDown markDown) {
@@ -104,12 +108,15 @@ public abstract class MarkDownService implements HandleService {
 
 
     public void doHandleImg(Elements elements, MarkDown markDown) throws InterruptedException {
-        long l = System.currentTimeMillis();
+        String id = markDown.getId();
 
+
+
+
+        long l = System.currentTimeMillis();
         CountDownLatch cdl = new CountDownLatch(elements.size());
         Semaphore semaphore = new Semaphore(15);
         ExecutorService threadPool = ThreadPoolConfig.getThreadPool();
-
         AtomicReference<String> imageUrl = new AtomicReference<>();
         String imageSrc = "";
 
@@ -129,10 +136,20 @@ public abstract class MarkDownService implements HandleService {
                     String fileName = downImage(markDown, element, name);
 
 
-                    imageUrl.set(markDown.getImageUrl() + "/" + fileName);
+                    String path = markDown.getImageUrl() + "/" + fileName;
+                    imageUrl.set(path);
                     // 替换地址
                     element.attr("src", imageUrl.get());
                     element.attr("alt", fileName);
+                    //下载完毕 保存数据库
+                    PIC pic = new PIC();
+                    pic.setCreateTime(new Date());
+                    pic.setPNAME(id);
+                    pic.setPATH(path);
+                    PICDao picdao = AppBean.getBean(PICDao.class);
+                    picdao.save(pic);
+
+
                     semaphore.release();
                 } catch (IOException e) {
                     System.out.println(imageSrc + "下载图片失败,cause by :" + e.getMessage());

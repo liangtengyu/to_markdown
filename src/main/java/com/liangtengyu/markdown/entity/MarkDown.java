@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class MarkDown {
+    private String id;
 
     private String website;
 
@@ -16,6 +17,15 @@ public class MarkDown {
     private String imageUrl;
 
     private String imageName;
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getWebsite() {
         return website;

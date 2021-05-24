@@ -2,6 +2,7 @@ create table IF NOT EXISTS md(
                    id int primary key auto_increment,
                    title text,
                    context longtext,
+                   pname varchar(100),
                    create_time datetime
 );
 

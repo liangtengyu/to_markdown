@@ -31,7 +31,7 @@ public class SaveFileServiceImpl implements SaveFileService {
     @Autowired
     SETTINGDao settingDao;
     @Override
-    public String saveToFile(String result) throws IOException {
+    public String saveToFile(String result,String id) throws IOException {
         SETTING mdSavePath = settingDao.findbyname("MD_Save_Path");
         System.out.println(mdSavePath);
         //通过此接口,将markdown保存为文本
@@ -47,23 +47,23 @@ public class SaveFileServiceImpl implements SaveFileService {
         FileOutputStream outputStream = new FileOutputStream(mdFile);
         outputStream.write(result.getBytes());
         outputStream.close();
-        saveToDatabase(result);
+        saveToDatabase(result, id);
         return "markdown file saveToFile success ";
     }
 
     @Override
-    public void saveToDatabase(String result) throws IOException {
+    public void saveToDatabase(String result,String id) throws IOException {
         MD md = new MD();
         md.setCreateTime(new Date());
         md.setCONTEXT(result);
-
+        md.setPNAME(id);
         md.setTITLE(getTitle(result));
         mdDao.save(md);
         log.info("保存到数据库成功!");
     }
 
     private String getTitle(String result) {
-        return result.substring(0, 50);
+        return result.substring(0, 100);
     }
 
     @Override
