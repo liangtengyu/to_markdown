@@ -9,6 +9,10 @@
             <a-icon type="clock-circle" />
             <span>解析</span>
           </a-menu-item>
+          <a-menu-item key="filelist"   @click="toNav">
+            <a-icon type="clock-circle" />
+            <span>列表</span>
+          </a-menu-item>
           <a-menu-item key="config"   @click="toNav">
             <a-icon type="clock-circle" />
             <span>配置</span>
