@@ -5,7 +5,7 @@ import router from './router'
 import axios from 'axios'
 Vue.prototype.$axios = axios
 
-import { Button, message,Layout,Input,Menu,Icon,Collapse,FormModel,Spin,Select} from 'ant-design-vue';
+import { Button, message,Layout,Input,Menu,Icon,Collapse,FormModel,Spin,Select,Pagination,Card} from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 Vue.use(Button);
 Vue.use(Layout);
@@ -16,6 +16,8 @@ Vue.use(Icon);
 Vue.use(FormModel);
 Vue.use(Spin);
 Vue.use(Select);
+Vue.use(Pagination);
+Vue.use(Card);
 Vue.prototype.$message = message;
 
 

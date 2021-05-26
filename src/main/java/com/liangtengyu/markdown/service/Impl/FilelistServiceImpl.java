@@ -35,6 +35,7 @@ public class FilelistServiceImpl implements FilelistService {
             JSONObject one_md = new JSONObject();
             one_md.put("title", md.getTITLE());
             one_md.put("pname", md.getPNAME());
+            one_md.put("id", md.getID());
             List<String> piclists= picDao.findbyPname(md.getPNAME());
             one_md.put("pics", piclists);
             jsonArray.add(one_md);

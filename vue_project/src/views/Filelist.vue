@@ -1,32 +1,19 @@
 <template>
-  <div class="Files" style=" height: 850px;">
 
 
-      <div class="content-box">
-        <tr v-for="md in mdlist">
-          <td>
-            <div class="files">
-             {{md.title}}
-            </div>
+  <div class="Files" style="height: 1340px; overflow: hidden" >
+    <div class="content-box" v-for="md in mdlist">
+        <a-card class="tr" :title="md.title"  >
+        <section>
+          <td v-for="pics in md.pics">
+            <img :src=pics  alt="" class="img-container">
           </td>
-
-            <td v-for="pics in md.pics">
-              <img :src=pics  alt="" class="img-container">
-            </td>
-
-
-        </tr>
-
-
-
-
-
-
-      </div>
-
-
-
+        </section>
+        </a-card>
+    </div>
+    <a-pagination v-model="current" :total="30" show-less-items  @change="getData(current-1)" />
   </div>
+
 </template>
 
 <script>
@@ -35,18 +22,21 @@ export default {
   data() {
     return {
       mdlist: '',
+      current: 1,
     }
   }, methods: {
-
-  }, beforeCreate() {
-    this.spinning = true;
-    this.$axios.post('http://127.0.0.1:9999/filelist', {"id": 0}).then(r => {
-      this.mdlist = r.data.data;
-      console.log(this.mdlist)
-    }).catch(reason => {
-      alert("请求数据出错:" + reason);
-    });
-    this.spinning = false;
+    getData(id){
+      this.spinning = true;
+      this.$axios.post('http://127.0.0.1:9999/filelist', {"id": id}).then(r => {
+        this.mdlist = r.data.data;
+      }).catch(reason => {
+        alert("请求数据出错:" + reason);
+      });
+      this.spinning = false;
+    }
+  }
+  , mounted() {
+    this.getData(0)
   }
 
 }
@@ -55,14 +45,14 @@ export default {
 
 <style scoped>
 .img-container {
-  width: 270px;
-  height: 150px;
+  width: 210px;
+  height: 140px;
 }
 
-.content-box {
-  /*border: 1px solid #1890ff ;*/
-  padding: 10px;
-  margin-bottom: 10px;
-}
 
+.tr{
+  border-radius: 6px;
+  margin-bottom: 11px;
+  overflow: hidden;
+}
 </style>
