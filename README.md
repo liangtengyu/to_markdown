@@ -7,8 +7,9 @@
 
 
 
->⚡️功能描述: 将HTTP页面 解析为Markdown格式
->目前支持: 知乎,简书,知否(SegmentFault),掘金,CSDN博客,微信公众号,V2EX 
+>⚡️功能描述: 将HTTP页面 解析为Markdown文件格式 保存以及管理
+>
+>目前支持: 微信公众号,知乎,知乎专栏,简书,知否(SegmentFault),掘金,CSDN,V2EX,博客园 
 
 
 
