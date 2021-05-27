@@ -57,7 +57,7 @@ export default {
     },
     handleOk(e) {
       console.log(this.delete);
-      this.$axios.post('http://127.0.0.1:9999/delete/'+this.delete).then(r => {
+      this.$axios.post('/delete/'+this.delete).then(r => {
         console.log("删除返回:",r.data)
         this.getData(0)
       }).catch(reason => {
@@ -67,12 +67,12 @@ export default {
     },
     getData(id){
       this.spinning = true;
-      this.$axios.post('http://127.0.0.1:9999/filelist', {"id": id}).then(r => {
+      this.$axios.post('/filelist', {"id": id}).then(r => {
         this.mdlist = r.data.data;
       }).catch(reason => {
         alert("请求数据出错:" + reason);
       });
-      this.$axios.post('http://127.0.0.1:9999/count').then(r => {
+      this.$axios.post('/count').then(r => {
         this.count = r.data;
       }).catch(reason => {
         alert("请求分页数据出错:" + reason);

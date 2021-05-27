@@ -4,7 +4,7 @@ create table IF NOT EXISTS md(
                    context longtext,
                    pname varchar(100),
                    save_path varchar(100),
-                   blog_url varchar(100),
+                   blog_url varchar(300),
                    create_time datetime
 );
 

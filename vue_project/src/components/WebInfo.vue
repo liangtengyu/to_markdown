@@ -81,7 +81,7 @@ export default {
 
     }, update() {
       this.spinning = true;
-      this.$axios.post('http://localhost:9999/update',{'id':this.data.id,'context':this.data.markdown,'blogUrl':this.configInfo.blogUrl}).then(r => {
+      this.$axios.post('/update',{'id':this.data.id,'context':this.data.markdown,'blogUrl':this.configInfo.blogUrl}).then(r => {
         if (r.data.code === 0) {
           alert(" 保存到数据库成功!   本地md文件重写完成!")
         }
@@ -92,7 +92,7 @@ export default {
 
     }, initArticle(id) {
       this.saveButtonIsShow = true
-      this.$axios.post('http://localhost:9999/select/' + id).then(r => {
+      this.$axios.post('/select/' + id).then(r => {
         this.data.markdown = r.data.context
         this.data.id = r.data.id
         this.configInfo.blogUrl = r.data.blogUrl

@@ -25,10 +25,6 @@
 >看到喜欢的文章想通过Markdown的格式保存.可以通过本项目一键解析保存图片和文档
 
 
-<div >
-<img src="./readme_images/img.png" style=" margin-left: 130px  ;height :130px;"/>
-</div>
-
 
 ---
 
@@ -64,9 +60,20 @@
 
 ---
 
+保存文件以及映射 配置
+
 ![pic](./readme_images/img_1.png)
+
+---
+在线数据库管理
+
 ![pic](./readme_images/img_2.png)
 ![pic](./readme_images/img_3.png)
+
+---
+文章列表管理
+![pic](./readme_images/img_4.png)
+
 
 --- 
 
@@ -81,14 +88,20 @@
 
 
 ---
+2021/05/27 新增特性:
+- 文章管理列表 分页
+- 删除 / 更新  本地文件/本地图片 
+- 在线编辑文档保存功能
+- 回显解析的博客URL 
+- 修复一些小bug
+
+---
 
 2021/04/07 新增特性:
  - 修复 CSDN图片下载返回code:302
  - 修复 知否图片下载返回code:302
  - 启用线程池,多线程协同下载图片,速度更快
  - 修复一些小bug
-
-
 
 
 ---

@@ -11,11 +11,13 @@ import com.liangtengyu.markdown.service.SettingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +37,10 @@ public class FilelistServiceImpl implements FilelistService {
 
     @Override
     public JSONObject getFileList(Integer id) {
-        List<MD> findbyid = mdDao.findAll(new PageRequest(id, 5)).getContent();
+        List<Sort.Order> orders = new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.DESC, "createTime"));//设置时间倒序
+        Sort sort = new Sort(orders);
+        List<MD> findbyid = mdDao.findAll(new PageRequest(id, 5,sort)).getContent();
         JSONObject re = new JSONObject();
         JSONArray jsonArray = new JSONArray();
 
