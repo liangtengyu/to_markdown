@@ -67,6 +67,8 @@ public class FilelistServiceImpl implements FilelistService {
         log.info("删除文章 ID: " + id);
 
     }
+
+
     //删除本地的markdown文件.
     private void deleteLocalmd(String savePath) {
         File file = new File(savePath);
@@ -77,6 +79,7 @@ public class FilelistServiceImpl implements FilelistService {
             log.info("删除markdown" + savePath + "错误!!!文件不存在");
         }
     }
+
 
     //删除本地的图片.
     private void deleteLocalPic(String path) {
@@ -94,20 +97,25 @@ public class FilelistServiceImpl implements FilelistService {
         }
     }
 
+
+
+
     @Override
     public JSONObject update(JSONObject data) {
         return null;
     }
 
     @Override
-    public JSONObject select(Integer id) {
-        return null;
+    public MD select(Integer id) {
+        MD one = mdDao.getOne(id);
+        log.info(one.toString());
+        return one;
     }
 
     @Override
-    public JSONObject count(Integer id) {
-        return null;
+    public long count() {
+        long count = mdDao.count();
+        return count;
     }
 
 }
-//MD加入表 本地存储的文件名  和 实际文章的url

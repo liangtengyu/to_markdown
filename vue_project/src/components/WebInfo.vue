@@ -23,7 +23,7 @@
   </a-form-model>
     </a-spin>
 
-      <mavon-editor   class="mde"  v-model="data.markdown"  style="min-height: 500px" />
+      <mavon-editor   class="mde"    v-model="data.markdown"  style="min-height: 500px" />
 
 
   </div>
@@ -39,7 +39,12 @@
   },
   data(){
     return{
-      data:'',
+      value:'',
+      data: {
+        code:'',
+        markdown:''
+      },
+      loadfile:'',
       spinning: false,
       labelCol: { span: 3 },
       wrapperCol: { span: 18},
@@ -70,10 +75,24 @@
         alert("需要输入文章地址")
       }
 
-    }
+    },
+     initArticle(id){
+       this.$axios.post('http://localhost:9999/select/'+id).then(r => {
+        console.log(r.data)
+         this.data.markdown = r.data.context
+       }).catch(reason => {
+         alert(reason);
+         this.spinning = false;
+       });
+     }
 
-  },
-}
+  },mounted() {
+      this.loadfile=this.$route.params.id
+      if (this.loadfile !== undefined) {
+        this.initArticle(this.loadfile)
+      }
+    }
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

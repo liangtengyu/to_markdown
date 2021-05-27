@@ -1,6 +1,7 @@
 package com.liangtengyu.markdown.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.liangtengyu.markdown.entity.MD;
 import com.liangtengyu.markdown.service.FilelistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,7 +48,7 @@ public class PageController  {
     //select
     @RequestMapping("/select/{id}")
     @ResponseBody
-    public JSONObject select(@PathVariable("id")Integer id) {
+    public MD select(@PathVariable("id")Integer id) {
         return filelistService.select(id);
     }
 
@@ -57,7 +58,7 @@ public class PageController  {
     //count
     @RequestMapping("/count")
     @ResponseBody
-    public JSONObject count(@RequestBody JSONObject data) {
-        return filelistService.count(data.getInteger("id"));
+    public long count() {
+        return filelistService.count();
     }
 }

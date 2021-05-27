@@ -1,6 +1,7 @@
 package com.liangtengyu.markdown.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.liangtengyu.markdown.entity.MD;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,7 +16,7 @@ public interface FilelistService {
 
     JSONObject update(JSONObject data);
 
-    JSONObject select(Integer id);
+    MD select(Integer id);
 
-    JSONObject count(Integer id);
+    long count();
 }
