@@ -33,6 +33,13 @@ public class MD implements Serializable {
     @Column(name = "PNAME")
     private String PNAME;
 
+
+
+    @Column(name = "SAVE_PATH")
+    private String savePath;
+
+
+
     @Column(name = "CREATE_TIME")
     private Date createTime;
 

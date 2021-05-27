@@ -11,4 +11,6 @@ public interface PICDao extends JpaRepository<PIC, Integer>, JpaSpecificationExe
 
     @Query("select pic.PATH from PIC pic where pic.PNAME = ?1 ")
     List<String> findbyPname(String pname);
+    @Query("select pic from PIC pic where pic.PNAME = ?1 ")
+    List<PIC> findPicbyPname(String pname);
 }

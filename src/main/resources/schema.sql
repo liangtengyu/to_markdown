@@ -3,6 +3,7 @@ create table IF NOT EXISTS md(
                    title text,
                    context longtext,
                    pname varchar(100),
+                   save_path varchar(100),
                    create_time datetime
 );
 

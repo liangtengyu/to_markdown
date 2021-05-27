@@ -9,6 +9,6 @@ import java.io.IOException;
  */
 public interface SaveFileService {
     String saveToFile(String result,String id) throws IOException;
-    void saveToDatabase(String result,String id) throws IOException;
+    void saveToDatabase(String result,String id,String savePath) throws IOException;
     void saveImagePath(String path);
 }

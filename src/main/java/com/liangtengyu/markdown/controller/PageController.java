@@ -5,6 +5,7 @@ import com.liangtengyu.markdown.service.FilelistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,4 +27,37 @@ public class PageController  {
         return filelistService.getFileList(data.getInteger("id"));
     }
 
+
+    //delete
+    @RequestMapping("/delete/{id}")
+    @ResponseBody
+    public Integer delete(@PathVariable("id")Integer id) {
+         filelistService.delete(id);
+         return 1;
+    }
+
+
+    //update
+    @RequestMapping("/update")
+    @ResponseBody
+    public JSONObject update(@RequestBody JSONObject data) {
+        return filelistService.update(data);
+    }
+
+    //select
+    @RequestMapping("/select/{id}")
+    @ResponseBody
+    public JSONObject select(@PathVariable("id")Integer id) {
+        return filelistService.select(id);
+    }
+
+
+
+
+    //count
+    @RequestMapping("/count")
+    @ResponseBody
+    public JSONObject count(@RequestBody JSONObject data) {
+        return filelistService.count(data.getInteger("id"));
+    }
 }

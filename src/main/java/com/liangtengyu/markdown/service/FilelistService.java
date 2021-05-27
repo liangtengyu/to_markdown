@@ -10,4 +10,12 @@ import org.springframework.stereotype.Service;
 @Service
 public interface FilelistService {
     JSONObject getFileList(Integer id);
+
+    void delete(Integer id);
+
+    JSONObject update(JSONObject data);
+
+    JSONObject select(Integer id);
+
+    JSONObject count(Integer id);
 }

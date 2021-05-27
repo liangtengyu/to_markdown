@@ -1,9 +1,18 @@
 <template>
 
 
-  <div class="Files" style="height: 1340px; overflow: hidden" >
+  <div class="Files" style="height: 1500px; overflow: hidden" >
     <div class="content-box" v-for="md in mdlist">
+      <div class="opt_button">
+        <a-button type="dashed" icon="edit" :id="md.id">
+          编辑
+        </a-button>
+        <a-button type="dashed" icon="delete" :id="md.id">
+          删除
+        </a-button>
+      </div>
         <a-card class="tr" :title="md.title"  >
+
         <section>
           <td v-for="pics in md.pics">
             <img :src=pics  alt="" class="img-container">
@@ -54,5 +63,7 @@ export default {
   border-radius: 6px;
   margin-bottom: 11px;
   overflow: hidden;
+}
+.opt_button{
 }
 </style>

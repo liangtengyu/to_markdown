@@ -47,17 +47,21 @@ public class SaveFileServiceImpl implements SaveFileService {
         FileOutputStream outputStream = new FileOutputStream(mdFile);
         outputStream.write(result.getBytes());
         outputStream.close();
-        saveToDatabase(result, id);
-        return "markdown file saveToFile success ";
+
+        String savepath = mdSavePath.getConfigValue() + "/" + markdown;
+
+        saveToDatabase(result, id, savepath);
+        return "MD文件保存到:"+savepath;
     }
 
     @Override
-    public void saveToDatabase(String result,String id) throws IOException {
+    public void saveToDatabase(String result,String id,String savePath) throws IOException {
         MD md = new MD();
         md.setCreateTime(new Date());
         md.setCONTEXT(result);
         md.setPNAME(id);
         md.setTITLE(getTitle(result));
+        md.setSavePath(savePath);
         mdDao.save(md);
         log.info("保存到数据库成功!");
     }
