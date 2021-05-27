@@ -16,14 +16,15 @@
           <a-button style="margin-left: 10px;" icon="close-circle">
             取消
           </a-button>
-          <a-button type="dashed" v-if="saveButtonIsShow" style="margin-left: 10px;" icon="save" @click="update()">
-            保存更改
-          </a-button>
 
         </a-form-model-item>
       </a-form-model>
     </a-spin>
 
+    <a-button type="dashed" v-if="saveButtonIsShow" style="margin-left: 10px;" icon="save" @click="update()">
+      保存更改
+    </a-button>
+    <a-input v-model="title" v-if="saveButtonIsShow" placeholder="自定义文章标题"/>
     <mavon-editor class="mde" v-model="data.markdown" style="min-height: 500px"/>
 
 
@@ -41,6 +42,7 @@ export default {
   },
   data() {
     return {
+      title:'',
       saveButtonIsShow: false,
       value: '',
       data: {
@@ -81,7 +83,7 @@ export default {
 
     }, update() {
       this.spinning = true;
-      this.$axios.post('/update',{'id':this.data.id,'context':this.data.markdown,'blogUrl':this.configInfo.blogUrl}).then(r => {
+      this.$axios.post('/update',{'id':this.data.id,'context':this.data.markdown,'blogUrl':this.configInfo.blogUrl,'title':this.title}).then(r => {
         if (r.data.code === 0) {
           alert(" 保存到数据库成功!   本地md文件重写完成!")
         }

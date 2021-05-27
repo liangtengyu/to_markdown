@@ -128,12 +128,16 @@ public class FilelistServiceImpl implements FilelistService {
         Integer id = data.getInteger("id");
         String context = data.getString("context");
         String blogUrl = data.getString("blogUrl");
+        String title = data.getString("title");
         MD one = mdDao.getOne(id);
         try {
             boolean b = writeTxtFile(one.getSavePath(), context, data);
             log.info("重新写文件 "+ one.getSavePath()+"返回:"+b);
             one.setBlogUrl(blogUrl);
             one.setCONTEXT(context);
+            if (!"".equals(title) ) {
+                one.setTITLE(title);
+            }
             mdDao.saveAndFlush(one);
         } catch (Exception e) {
             e.printStackTrace();
