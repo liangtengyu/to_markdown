@@ -1,5 +1,6 @@
 package com.liangtengyu.markdown.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import java.util.Date;
 @Entity
 @Data
 @Table(name = "MD")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
 public class MD implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,6 +39,9 @@ public class MD implements Serializable {
 
     @Column(name = "SAVE_PATH")
     private String savePath;
+
+    @Column(name = "BLOG_URL")
+    private String blogUrl;
 
 
 

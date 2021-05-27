@@ -14,6 +14,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
@@ -97,18 +99,46 @@ public class FilelistServiceImpl implements FilelistService {
         }
     }
 
+    //写入本地文件
+    public  boolean writeTxtFile(String filePath, String content,JSONObject data) throws Exception {
+        boolean flag = false;
+        FileOutputStream fileOutputStream = null;
+        File file = new File(filePath);
+        try {
+            fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write(content.getBytes(StandardCharsets.UTF_8));
+            fileOutputStream.close();
+            flag = true;
+        } catch (Exception e) {
+            System.out.println("文件写入失败！" + e);
+        }
+        data.put("code", 0);
+        return flag;
+    }
 
 
 
     @Override
     public JSONObject update(JSONObject data) {
-        return null;
+        Integer id = data.getInteger("id");
+        String context = data.getString("context");
+        String blogUrl = data.getString("blogUrl");
+        MD one = mdDao.getOne(id);
+        try {
+            boolean b = writeTxtFile(one.getSavePath(), context, data);
+            log.info("重新写文件 "+ one.getSavePath()+"返回:"+b);
+            one.setBlogUrl(blogUrl);
+            one.setCONTEXT(context);
+            mdDao.saveAndFlush(one);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return data;
     }
 
     @Override
     public MD select(Integer id) {
         MD one = mdDao.getOne(id);
-        log.info(one.toString());
         return one;
     }
 

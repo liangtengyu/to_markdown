@@ -52,7 +52,7 @@ public class RequestController {
             result = ResolveService.get(markDown);
             resultMap.put("code","0");
             resultMap.put("markdown",result);
-            log.info(saveFileService.saveToFile(result,id));
+            log.info(saveFileService.saveToFile(result,id,markDown));
             log.info("解析完成 返回markdown结果 "+ id);
             log.info("-------------------------------------------------------------");
         } catch (Exception e) {

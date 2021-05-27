@@ -1,8 +1,8 @@
 <template>
   <div class="about" style=" height: 850px;">
     <h1>关于本工具</h1>
-    <p>输入博客网址，即可转换相应的markdown</p>
-
+    <p>将HTTP页面 解析为Markdown格式 </p>
+    <p>目前支持: 微信公众号,知乎,知乎专栏,简书,知否(SegmentFault),掘金,CSDN,V2EX,博客园</p>
     <p>----------------------</p>
 
 
