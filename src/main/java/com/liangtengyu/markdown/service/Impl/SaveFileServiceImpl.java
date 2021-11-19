@@ -1,5 +1,6 @@
 package com.liangtengyu.markdown.service.Impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.liangtengyu.markdown.dao.MDDao;
 import com.liangtengyu.markdown.dao.SETTINGDao;
 import com.liangtengyu.markdown.entity.MD;
@@ -57,6 +58,9 @@ public class SaveFileServiceImpl implements SaveFileService {
 
     @Override
     public void saveToDatabase(String result,String id,String savePath,MarkDown markdown) throws IOException {
+        if (StrUtil.isBlank(result)) {
+            return;
+        }
         MD md = new MD();
         md.setCreateTime(new Date());
         md.setCONTEXT(result);

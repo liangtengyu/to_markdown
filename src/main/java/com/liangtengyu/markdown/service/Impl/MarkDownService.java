@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
 
+import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
@@ -236,6 +237,20 @@ public abstract class MarkDownService implements HandleService {
         return imageSrc;
     }
 
+//    /**
+//     * 获取 Document 对象
+//     *
+//     * @param blogUrl
+//     * @return
+//     */
+//    private Document getDocument(String blogUrl) {
+//        try {
+//            return Jsoup.connect(blogUrl).get();
+//        } catch (IOException e) {
+//            throw new RuntimeException("解析地址，获取 Document 对象失败..", e);
+//        }
+//    }
+
     /**
      * 获取 Document 对象
      *
@@ -243,11 +258,7 @@ public abstract class MarkDownService implements HandleService {
      * @return
      */
     private Document getDocument(String blogUrl) {
-        try {
-            return Jsoup.connect(blogUrl).get();
-        } catch (IOException e) {
-            throw new RuntimeException("解析地址，获取 Document 对象失败..", e);
-        }
+        return Jsoup.parse(HttpUtil.downloadString(blogUrl, "utf-8"));
     }
 
 
