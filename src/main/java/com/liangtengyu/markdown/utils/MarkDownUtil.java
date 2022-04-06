@@ -64,7 +64,7 @@ public class MarkDownUtil {
     }
 
     public static void main(String[] args) {
-        String a = "https://www.cnblogs.com/duanxz/p/4901437.html";
+        String a = "https://zhuanlan.zhihu.com/p/52843516";
         MarkDown markDown = new MarkDown();
         markDown.setBlogUrl(a);
         String urlOrigin = getUrlOrigin(markDown);

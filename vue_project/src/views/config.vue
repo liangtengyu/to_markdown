@@ -25,9 +25,10 @@
 
 
             <a-form-model-item class="save_button" :wrapper-col="{ span: 14, offset: 4 }">
-              <a-button type="primary"  @click="onSubmit">
-                保存配置
-              </a-button>
+              线上试用版本,为防止被恶意篡改配置,不提供此功能!
+<!--              <a-button type="primary"  @click="onSubmit">-->
+<!--                保存配置-->
+<!--              </a-button>-->
 
               <p style="color: red" class="lb" >{{msg}}</p>
             </a-form-model-item>

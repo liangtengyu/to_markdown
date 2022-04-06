@@ -14,7 +14,7 @@ public  class ZhihuHandleService extends MarkDownService {
     protected synchronized Document getHtmlContent(Document document) {
         //默认为专栏
         Element root = document.getElementById("root");
-        Elements elementsByClass = root.getElementsByClass("RichText ztext Post-RichText");
+        Elements elementsByClass = root.getElementsByClass("Post-RichText");
         if (elementsByClass.size() == 0) {
             //是question
             Elements content = document.getElementsByClass("QuestionAnswer-content");
