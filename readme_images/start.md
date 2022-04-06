@@ -3,7 +3,7 @@
 
 线上使用:
 
-[>>>访问线上服务器<<<(页面加载有点慢.毕竟人多..)](http://markdown.liangtengyu.com:9999)
+[>>>访问线上服务器<<<](http://markdown.liangtengyu.com:9999)
 
 ---
 
