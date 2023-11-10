@@ -12,6 +12,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.URL;
+
 public class YuqueHandleService extends MarkDownService {
 
 
@@ -64,12 +66,14 @@ public class YuqueHandleService extends MarkDownService {
     }
 
 
+
     //"https://www.yuque.com/wangwangbunian-izczt/by3cic/vfw8xz6t003msaba#35c267ba"
     public static Element startChrome(String url) {
-        // 设置WebDriver路径
-        System.setProperty("webdriver.chrome.driver", "src/main/java/com/liangtengyu/markdown/config/chromeDriver/chromedriver_win32/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "chromeDriver/chromedriver_linux64/chromedriver");
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--disable-gpu");
+        chromeOptions.addArguments("--no-sandbox");
         WebDriver driver = new ChromeDriver(chromeOptions);
         // 使用try-with-resources确保WebDriver在代码块结束后关闭
         try {

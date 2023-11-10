@@ -95,11 +95,7 @@
 			<artifactId>hutool-all</artifactId>
 			<version>5.6.2</version>
 		</dependency>
-		<dependency>
-			<groupId>com.liangtengyu.markdown</groupId>
-			<artifactId>markdown</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+
 	</dependencies>
 
 	<build>
