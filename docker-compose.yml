@@ -1,0 +1,12 @@
+version: '3'
+services:
+  app:
+    container_name: markdown_resolve
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: markdown_resolve
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - "9999:9999"
