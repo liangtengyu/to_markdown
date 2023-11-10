@@ -1,5 +1,6 @@
 package com.liangtengyu.markdown.service.Impl;
 
+import com.liangtengyu.markdown.entity.MarkDown;
 import com.liangtengyu.markdown.utils.MarkDownUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -10,7 +11,7 @@ public class CSDNHandleService extends MarkDownService {
 
 
     @Override
-    protected Document getHtmlContent(Document document) {
+    protected Document getHtmlContent(MarkDown markDown, Document document) {
         Element mainElement = document.getElementById("mainBox");
 
         // 不是 Markdown，则获取 HTML

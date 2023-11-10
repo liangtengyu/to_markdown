@@ -1,17 +1,15 @@
 package com.liangtengyu.markdown.service.Impl;
 
-import lombok.Synchronized;
+import com.liangtengyu.markdown.entity.MarkDown;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.util.Iterator;
-
 public  class ZhihuHandleService extends MarkDownService {
 
     @Override
-    protected synchronized Document getHtmlContent(Document document) {
+    protected synchronized Document getHtmlContent(MarkDown markDown, Document document) {
         //默认为专栏
         Element root = document.getElementById("root");
         Elements elementsByClass = root.getElementsByClass("Post-RichText");

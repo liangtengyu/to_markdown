@@ -16,18 +16,27 @@
 	</properties>
 
 
+
 	<groupId>com.liangtengyu.markdown</groupId>
 	<artifactId>markdown</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>markdown</name>
 
 	<dependencies>
+
 		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.141.59</version> <!-- 版本号可能有更新，你可以查看最新的版本 -->
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -86,7 +95,12 @@
 			<artifactId>hutool-all</artifactId>
 			<version>5.6.2</version>
 		</dependency>
-    </dependencies>
+		<dependency>
+			<groupId>com.liangtengyu.markdown</groupId>
+			<artifactId>markdown</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<finalName>markdown_resolve</finalName>

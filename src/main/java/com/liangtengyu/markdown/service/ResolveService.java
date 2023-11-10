@@ -1,15 +1,7 @@
 package com.liangtengyu.markdown.service;
 
 import com.liangtengyu.markdown.entity.MarkDown;
-import com.liangtengyu.markdown.service.Impl.CSDNHandleService;
-import com.liangtengyu.markdown.service.Impl.CsdnBlogHandleService;
-import com.liangtengyu.markdown.service.Impl.JianshuHandleService;
-import com.liangtengyu.markdown.service.Impl.JuejinHandleService;
-import com.liangtengyu.markdown.service.Impl.MarkDownService;
-import com.liangtengyu.markdown.service.Impl.SegmentFaultHandleService;
-import com.liangtengyu.markdown.service.Impl.V2exHandleService;
-import com.liangtengyu.markdown.service.Impl.WeiXinHandleService;
-import com.liangtengyu.markdown.service.Impl.ZhihuHandleService;
+import com.liangtengyu.markdown.service.Impl.*;
 import com.liangtengyu.markdown.utils.MarkDownUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -33,6 +25,7 @@ public  class ResolveService {
     private static final String SEGMENTFAULT = "segmentfault";
     private static final String JIANSHU = "jianshu";
     private static final String V_2_EX = "v2ex";
+    private static final String YU_QUE = "yuque";
 
 
 
@@ -65,12 +58,14 @@ public  class ResolveService {
             }  else if (SEGMENTFAULT.equals(website)) {
                 serviceMap.put(website,new SegmentFaultHandleService());
 
-
             }  else if (JIANSHU.equals(website)) {
                 serviceMap.put(website,new JianshuHandleService());
 
             }else if (V_2_EX.equals(website)) {
                 serviceMap.put(website,new V2exHandleService());
+
+            }else if (YU_QUE.equals(website)) {
+                serviceMap.put(website,new YuqueHandleService());
 
             } else {
                 log.info("暂时还没有解决方案.");

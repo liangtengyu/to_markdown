@@ -15,13 +15,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
 
-import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
@@ -40,7 +38,7 @@ public abstract class MarkDownService implements HandleService {
         Document document = getDocument(markDown.getBlogUrl());
 
         // 2.提取 Document 中的博文信息
-        document = getHtmlContent(document);
+        document = getHtmlContent(markDown,document);
 
         // 3.下载图片，并进行替换
         String htmlContent = convertHtml(markDown, document);
@@ -265,8 +263,9 @@ public abstract class MarkDownService implements HandleService {
     /**
      * 每个网站的结构不同，需要各个子类完成解析
      *
+     * @param markDown
      * @param document
      * @return
      */
-    protected abstract Document getHtmlContent(Document document);
+    protected abstract Document getHtmlContent(MarkDown markDown, Document document);
 }
